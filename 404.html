@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+<body>
+  <script>
+
+  //Get Handle
+  var str = window.location.href;
+  var pos = str.indexOf(".io/");
+ // document.write(pos+4); //Using document.write() after an HTML document is loaded, will delete all existing HTML:
+  var InstaHandle = str.slice(pos+3);
+  window.location.replace("https://ddkhera.github.io/"+InstaHandle );
+  //document.write(InstaHandle);
+
+  </script>
+
+
+</body>
+
+</html>

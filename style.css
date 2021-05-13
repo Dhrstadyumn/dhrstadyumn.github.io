@@ -1,7 +1,7 @@
 /* Style Settings */
 @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
 :root {
-    --bgColor: black;
+    --bgColor: white;
     --accentColor: #39e09b;
     --font: 'Karla', sans-serif;
 }
@@ -16,10 +16,14 @@ body{
     display: block;
     margin: 35px auto 20px;
     border-radius: 50%;
+    border: 3px;
+    border-radius: 100%;
+    border-style: solid;
+    border-color: var(--accentColor);
 }
 
 #userName{
-    color: #bbb;
+    color: black;
     font-size: 1rem;
     font-weight: 600;
     line-height: 1.25;
@@ -39,7 +43,7 @@ body{
 .link{
     display: block;
     background-color: var(--accentColor);
-    color: var(--bgColor);
+    color: var(--black);
     font-family: var(--font);
     text-align: center;
     margin-bottom: 20px;
@@ -70,4 +74,10 @@ body{
    position: absolute;
    top: 0;
    width: 100%;
+}
+
+.unstyled-button {
+  border: none;
+  padding: 0;
+  background: none;
 }

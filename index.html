@@ -1,4 +1,109 @@
-<!-- <iframe src="http://docs.google.com/gview?url=https://dhrstadyumn.github.io/Resume(1).pdf" style="width:718px; height:700px;" frameborder="0"></iframe> -->
-<!--<embed src="https://drive.google.com/viewerng/
-viewer?embedded=true&url=https://dhrstadyumn.github.io/Resume(1).pdf" width=100% height="1375">-->
-<meta http-equiv="Refresh" content="0; url=https://ddkhera.github.io" />
+<!DOCTYPE html>
+
+<html>
+
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta charset="UTF-8">
+   <meta property="og:title" content="DD" />
+   <!--<meta property="og:description" content="" />-->
+   <meta property="og:image"  content="https://ddkhera.github.io/DD.png" />
+       <!--<meta property="og:image:secure_url"  content="https:// "/>-->
+       <meta property="og:image:type" content="image/png" />
+       <meta name="twitter:card" content="summary_large_image" />
+
+	<title>DD</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="DD LOGO.png" type="image/x-icon"/>
+</head>
+
+<body>
+  <img id="userPhoto" src="profile.png" alt="User Photo">
+
+  <a href="https://www.instagram.com/dhrstadyumn" id="userName">@dhrstadyumn</a>
+
+      <div id="links">
+      <a class="link" id = "Button1" href="" target="_blank">Only
+0.26 g of CO₂ is produced every time someone visits</a>
+      <a class="link" id = "Button2" href="" target="_blank">LinkTree emits 2075% more</a>
+      <a class="link" id = "Button3" href="" target="_blank">:)</a>
+      <a class="link" id = "ButtonPay" href="pay" target="_blank">Buy Me a Pizza</a>
+      <a class="link" href="themes/index.html" target="_blank">Pick a theme<br>Get your own blazing fast, low-carbon footprint page without any recurring costs or external branding</a>
+
+      <div id="paypal-button-container-P-09K399637E545240NMBPDCUY"></div>
+      <script src="https://www.paypal.com/sdk/js?client-id=AYdioozlEcii-ANzeeRMWvKnltJO7FteBoPa6j1sR4RxgWiqm7ibFTYlM5K4IaZiYkTOYAZBDQ4eboi7&vault=true&intent=subscription" data-sdk-integration-source="button-factory"></script>
+      <script>
+      paypal.Buttons({
+      style: {
+          shape: 'rect',
+          color: 'black',
+          layout: 'vertical',
+          label: 'paypal'
+      },
+      createSubscription: function(data, actions) {
+        return actions.subscription.create({
+          /* Creates the subscription */
+          plan_id: 'P-09K399637E545240NMBPDCUY'
+        });
+      },
+      onApprove: function(data, actions) {
+        alert(data.subscriptionID); // You can add optional success message for the subscriber here
+      }
+      }).render('#paypal-button-container-P-09K399637E545240NMBPDCUY'); // Renders the PayPal button
+      </script>
+
+      <!--
+      <a class="link" id = "Button3" href="" target="_blank">.</a>
+      <a class="link" id = "Button4" href="" target="_blank">.</a>
+      <a class="link" id = "Button5" href="" target="_blank">.</a>
+
+      <a class="link" id = "Button6" href="" target="_blank">.</a>
+      <a class="link" id = "Button7" href="" target="_blank">.</a>
+      <a class="link" id = "Button8" href="" target="_blank">.</a>
+      <a class="link" id = "Button9" href="" target="_blank">.</a>
+      <a class="link" id = "Button10" href="" target="_blank">.</a>
+      -->
+      <script>
+          var sheetreq = new XMLHttpRequest();
+          sheetreq.overrideMimeType("application/json");
+          sheetreq.open('GET', "https://spreadsheets.google.com/feeds/cells/1jXyJBmCaMNgFnxZIgbupS62qujWJkHdjX0VZBDRAjAA/1/public/full?alt=json", true);
+          sheetreq.onload  = function() {
+             var jsonResponse = JSON.parse(sheetreq.responseText);
+             // do something with jsonResponse
+               var i;
+               for (i = 2; i < 22 ; i+=2)
+                    {
+                      document.getElementById("Button"+(i/2)).innerHTML = jsonResponse.feed.entry[i].content.$t;
+                      document.getElementById("Button"+(i/2)).href = jsonResponse.feed.entry[i+1].content.$t;
+                    }
+
+          };
+          sheetreq.send(null);
+      </script>
+
+      <script>
+
+
+              function gfg_Run() {
+                var sites = [
+
+            'upi://pay?pa=ddkhera@sbi&pn=Dhrstadyumn Khera&tn=Contact me:dhrstadyumn@gmail.com&cu=INR','gpay://upi/pay?pa=ddkhera@sbi&pn=Dhrstadyumn Khera&tn=Contact me:dhrstadyumn@gmail.com&cu=INR'
+
+            ];
+                var iOS =
+                  /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+                  !window.MSStream;
+
+                  if (iOS) {
+                    document.getElementById("ButtonPay").href =  sites[1];
+                                  } else {
+                    document.getElementById("ButtonPay").href =  sites[0];
+                                  }
+              }
+
+
+      </script>
+
+      <body onload="gfg_Run();">
+
+</body>
+</html>

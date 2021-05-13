@@ -1,0 +1,41 @@
+<html>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+    <body>
+    <p>If you don't use a UPI app you'll be redirected to Milaap.org for the fundraiser</p>
+    <script>
+
+            var sites = [
+
+        'upi://pay?pa=ddkhera@sbi&pn=Dhrstadyumn Khera&tn=Contact me:dhrstadyumn@gmail.com&cu=INR','gpay://upi/pay?pa=ddkhera@sbi&pn=Dhrstadyumn Khera&tn=Contact me:dhrstadyumn@gmail.com&cu=INR'
+
+        ];
+
+            function randomSite() {
+                var i = parseInt(Math.random() * sites.length);
+                location.href = sites[i];
+
+
+
+                function gfg_Run() {
+                  var iOS =
+                    /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+                    !window.MSStream;
+
+                    if (iOS) {
+                                      location.href = sites[1];;
+                                    } else {
+                                      location.href = sites[0];
+                                    }
+                }
+
+            }
+
+            var timer = setTimeout(function() {
+                window.location='https://milaap.org/fundraisers/thereisnoearthb/deeplink?deeplink_type=upi'
+            }, 3000);
+
+        <!--<body onload='randomSite()'>-->
+    </script>
+    <body onload='randomSite()'>
+</body>
+</html>

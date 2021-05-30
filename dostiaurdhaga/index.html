@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Dosti Aur Dhaga</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+</head>
+
+<body>
+    <img id="userPhoto" src="profile.png" alt="User Photo">
+
+    <a href="https://www.instagram.com/dostiaurdhaga" id="userName">@dostiaurdhaga</a>
+    <div id="links">
+
+      <!--<center>
+              <a href="https://instagram.com/dhrstadyumn" class="unstyled-button"><img src="icons/instagram.svg" alt="Instagram icon" height="25"></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="https://wa.me/919868113891" class="unstyled-button"><img src="icons/whatsapp.svg" alt="WhatsApp icon"height="25"></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="mailto:dhrstadyumn@gmail.com" class="unstyled-button"><img src="icons/envelope.svg" alt="Email icon"height="25"></a>
+      </center>-->
+
+      <a class="link" id = "Button1" href="https://docs.google.com/forms/d/e/1FAIpQLSfEnPotnepG5_EkaefR5btvhOiMeDcDneZvN9WrS9W8kOD-Jw/viewform" target="_blank">Place an order</a>
+      <a class="link" id = "Button3" href="https://t.me/dostiaurdhaga" target="_blank">Join our telegram group to get instant access to drops</a>
+      <a class="link" id = "ButtonPay" href="upi://pay?pa=bhawnatanwar200@oksbi&pn=Bhawna Tanwar&tn=DostiAurDhaga&cu=INR'" target="_blank">Complete payment With Bhawna</a>
+      <a class="link" id = "ButtonPay2" href="upi://pay?pa=pallavigoswami434@oksbi&pn=Pallavi Goswami&tn=DostiAurDhaga&cu=INR'" target="_blank">Complete payment With Pallavi</a>
+      <a class="link" id = "Button5" href="mailto:dostiaurdhaga200@gmail.com" target="_blank">Email us</a>
+    </div>
+
+
+    <div class="footer">
+      ❤
+    </div>
+
+
+
+
+
+    <!-- Javascript -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script  src="index.js"></script>
+    <script>
+
+
+            function gfg_Run() {
+              var sites = [
+
+          'upi://pay?pa=bhawnatanwar200@oksbi&pn=Bhawna Tanwar&tn=DostiAurDhaga&cu=INR','gpay://upi/pay?pa=bhawnatanwar200@oksbi&pn=Bhawna Tanwar&tn=DostiAurDhaga&cu=INR','upi://pay?pa=pallavigoswami434@oksbi&pn=Pallavi Goswami&tn=DostiAurDhaga&cu=INR','gpay://upi/pay?pa=pallavigoswami434@oksbi&pn=Pallavi Goswami&tn=DostiAurDhaga&cu=INR'
+
+          ];
+              var iOS =
+                /iPad|iPhone|iPod/.test(navigator.userAgent) &&
+                !window.MSStream;
+
+                if (iOS) {
+                  document.getElementById("ButtonPay").href =  sites[1];
+                  document.getElementById("ButtonPay2").href =  sites[3];
+                                } else {
+                  document.getElementById("ButtonPay").href =  sites[0];
+                  document.getElementById("ButtonPay2").href =  sites[2];
+                                }
+            }
+
+
+    </script>
+
+    <body onload="gfg_Run();">
+</body>
+</html>

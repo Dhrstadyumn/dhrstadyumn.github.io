@@ -26,32 +26,41 @@
 <body>
     <div class="container text-center">
         <h2>Authorization Form</h2>
+        <p>
+            _________ authorizes Dhrstadyumn (DD) to publicly and privately inform potential partners that he is one of the representatives of the Indian Youth Climate Movement. 
+<br><br>
+Specifically, DD is someone youth groups including _________ look up to/trust/depend upon/work with for fundraising, and paid projects like convenings. 
+<br><br>
+Partners can connect with DD to access a network of legitimate youth groups effectively delivering projects in the climate justice space.
+        </p>
         <form id="authForm">
             <div class="form-group">
-                <label for="signatory">Authorized Signatory</label>
+                <label for="signatory">Name of authorized signatory</label>
                 <input type="text" class="form-control" id="signatory" placeholder="Enter name" required>
             </div>
             <div class="form-group">
                 <label for="youthGroup">Youth Group</label>
                 <input type="text" class="form-control" id="youthGroup" placeholder="Enter name" required>
             </div>
-            <button type="button" class="btn btn-primary" onclick="generateEmail()">Generate Email</button>
         </form>
-        <a id="mailtoLink" class="btn btn-success mt-3" style="display: none;">Email</a>
+        <a id="mailtoLink" class="btn btn-success mt-3" href="mailto:dhrstadyumn@tutanota.com">Tap to Email</a>
+        <!--<p>(Please use your official team email and copy relevant stakeholders)</p>-->
     </div>
 
     <script>
-        function generateEmail() {
+        function updateMailtoLink() {
             const signatory = document.getElementById('signatory').value;
             const youthGroup = document.getElementById('youthGroup').value;
-            const subject = "Authorization Notification";
+            const subject = "Authorization to represent Indian Youth Climate Movement";
             const body = `${signatory} authorizes Dhrstadyumn (DD) to publicly and privately inform potential partners that he is one of the representatives of the Indian Youth Climate Movement.\n\nSpecifically, DD is someone youth groups including ${youthGroup} look up to, trust, depend upon, and work with for fundraising, and paid projects like convenings.\n\nPartners can connect with DD to access a network of legitimate youth groups effectively delivering projects in the climate justice space.`;
             const mailtoLink = `mailto:dhrstadyumn@tutanota.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
             const linkElement = document.getElementById('mailtoLink');
             linkElement.href = mailtoLink;
-            linkElement.style.display = 'inline-block';
         }
+
+        document.getElementById('signatory').addEventListener('input', updateMailtoLink);
+        document.getElementById('youthGroup').addEventListener('input', updateMailtoLink);
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>

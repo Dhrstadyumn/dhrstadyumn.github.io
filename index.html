@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Authorization Form</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h2>Authorization Form</h2>
+        <form id="authForm">
+            <div class="form-group">
+                <label for="signatory">Authorized Signatory</label>
+                <input type="text" class="form-control" id="signatory" placeholder="Enter name" required>
+            </div>
+            <div class="form-group">
+                <label for="youthGroup">Youth Group</label>
+                <input type="text" class="form-control" id="youthGroup" placeholder="Enter name" required>
+            </div>
+            <button type="button" class="btn btn-primary" onclick="generateEmail()">Generate Email</button>
+        </form>
+        <a id="mailtoLink" class="btn btn-success mt-3" style="display: none;">Email</a>
+    </div>
+
+    <script>
+        function generateEmail() {
+            const signatory = document.getElementById('signatory').value;
+            const youthGroup = document.getElementById('youthGroup').value;
+            const subject = "Authorization Notification";
+            const body = `${signatory} authorizes Dhrstadyumn (DD) to publicly and privately inform potential partners that he is one of the representatives of the Indian Youth Climate Movement.\n\nSpecifically, DD is someone youth groups including ${youthGroup} look up to, trust, depend upon, and work with for fundraising, and paid projects like convenings.\n\nPartners can connect with DD to access a network of legitimate youth groups effectively delivering projects in the climate justice space.`;
+            const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+            const linkElement = document.getElementById('mailtoLink');
+            linkElement.href = mailtoLink;
+            linkElement.style.display = 'inline-block';
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

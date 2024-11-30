@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Authorization Form</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .auth-form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--bg-color);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px var(--shadow-color);
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .form-group input {
+            padding: 0.75rem;
+            border: 2px solid var(--shadow-color);
+            border-radius: 0.5rem;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .auth-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 1.5rem 0;
+        }
+
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            text-decoration: none;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .submit-btn i {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .auth-form-container {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-form-container">
+        <h2>Authorization Form</h2>
+        <p class="auth-text">
+            This form authorizes Dhrstadyumn (DD) to represent your youth group in the Indian Youth Climate Movement. By submitting this form, you confirm that DD can:
+            <br><br>
+            1. Represent your organization to potential partners
+            <br>
+            2. Facilitate fundraising opportunities
+            <br>
+            3. Connect your group with the broader climate justice network
+            <br><br>
+            Your authorization helps strengthen our collective impact in the climate justice space.
+        </p>
+        <form id="authForm" class="auth-form">
+            <div class="form-group">
+                <label for="signatory">Name of Authorized Signatory</label>
+                <input type="text" id="signatory" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="youthGroup">Youth Group Name</label>
+                <input type="text" id="youthGroup" placeholder="Your organization's name" required>
+            </div>
+            <a id="mailtoLink" class="submit-btn" href="mailto:dhrstadyumn@tutanota.com">
+                <i class="fas fa-envelope"></i>
+                Send Authorization
+            </a>
+        </form>
+    </div>
+
+    <script>
+        function updateMailtoLink() {
+            const signatory = document.getElementById('signatory').value;
+            const youthGroup = document.getElementById('youthGroup').value;
+            const subject = "Authorization to Represent - " + youthGroup;
+            const body = `Dear DD,
+
+I, ${signatory}, hereby authorize you (Dhrstadyumn) to represent ${youthGroup} as part of the Indian Youth Climate Movement.
+
+This authorization confirms that:
+
+1. You may inform potential partners, both publicly and privately, that you represent our organization.
+2. We recognize you as someone our youth group looks up to, trusts, and works with for fundraising and project development.
+3. You may facilitate connections between our organization and your network of legitimate youth groups in the climate justice space.
+
+We understand that this authorization supports our collective mission while acknowledging that fundraising outcomes cannot be guaranteed.
+
+Best regards,
+${signatory}
+${youthGroup}`;
+
+            const mailtoLink = `mailto:dhrstadyumn@tutanota.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            document.getElementById('mailtoLink').href = mailtoLink;
+        }
+
+        document.getElementById('signatory').addEventListener('input', updateMailtoLink);
+        document.getElementById('youthGroup').addEventListener('input', updateMailtoLink);
+    </script>
+</body>
+</html>

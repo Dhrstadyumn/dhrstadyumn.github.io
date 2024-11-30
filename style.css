@@ -1,83 +1,492 @@
-/* Style Settings */
-@import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
 :root {
-    --bgColor: white;
-    --accentColor: #39e09b;
-    --font: 'Karla', sans-serif;
+    --primary-color: #2ecc71;
+    --text-color: #333;
+    --bg-color: #fff;
+    --card-bg: #f8f9fa;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
 }
 
-body{
-    background-color: var(--bgColor);
+[data-theme="dark"] {
+    --primary-color: #27ae60;
+    --text-color: #f8f9fa;
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --shadow-color: rgba(0, 0, 0, 0.2);
 }
 
-#userPhoto{
-    width: 96px;
-    height: 96px;
-    display: block;
-    margin: 35px auto 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+#themeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--text-color);
+}
+
+.sun-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.5s ease;
+}
+
+[data-theme="dark"] .sun-icon {
+    transform: rotate(180deg);
+}
+
+.hero {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.profile-container {
+    margin-bottom: 2rem;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    border: 3px;
-    border-radius: 100%;
-    border-style: solid;
-    border-color: var(--accentColor);
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    margin-bottom: 1rem;
 }
 
-#userName{
-    color: black;
+.name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.tagline {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--card-bg);
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+}
+
+.social-icon img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(var(--icon-brightness));
+}
+
+.content {
+    display: grid;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.eco-impact {
+    text-align: center;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1rem;
+}
+
+.projects {
+    padding: 2rem 0;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.project-card .role {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.project-card h3 a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.project-card h3 a:hover {
+    color: var(--primary-color);
+}
+
+.motto {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--primary-color);
+    max-width: 600px;
+    margin: 1rem auto;
+    line-height: 1.6;
+}
+
+.achievements {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--shadow-color);
+}
+
+.award, .certification {
+    margin: 0.5rem 0;
     font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.25;
+}
+
+.achievements-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.achievements-list li {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.achievements-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+.about-section {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.bio {
+    margin: 1.5rem 0;
+    line-height: 1.8;
+}
+
+.education {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--shadow-color);
+}
+
+.education h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.skills-section {
+    margin: 2rem 0;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--shadow-color);
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.skill-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background-color: var(--bg-color);
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.skill-item:hover {
+    transform: translateX(5px);
+}
+
+.skill-icon {
+    font-size: 1.5rem;
+}
+
+.skill-name {
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.previous-roles {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--shadow-color);
+    font-size: 0.9rem;
+}
+
+.role-item {
     display: block;
-    font-family: var(--font);
+    color: var(--text-color);
+    opacity: 0.8;
+    margin: 0.25rem 0;
+}
+
+.support-section {
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.payment-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.payment-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+.payment-button:hover {
+    transform: translateY(-2px);
+}
+
+.payment-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.carbon-footer {
+    text-align: center;
+    margin-top: 3rem;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.connect-section {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+.connect-options {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.connect-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--bg-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 0.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.connect-button:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    transform: translateY(-2px);
+}
+
+.connect-button i {
+    font-size: 1.2rem;
+}
+
+footer {
     width: 100%;
+    padding: 2rem 0;
+    margin-top: 4rem;
     text-align: center;
-    text-decoration: none;
+    background: var(--bg-secondary);
 }
 
-#links{
-    max-width: 675px;
-    width: auto;
-    display: block;
-    margin: 27px auto;
-}
-.link{
-    display: block;
-    background-color: var(--accentColor);
-    color: var(--black);
-    font-family: var(--font);
-    text-align: center;
-    margin-bottom: 20px;
-    padding: 17px;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: all .25s cubic-bezier(.08,.59,.29,.99);
-    border: solid var(--accentColor) 2px;
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-.link:hover{
-    background-color: var(--bgColor);
-    color: var(--accentColor);
+.copyright {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
 }
 
-
-.iframe-container {
-  overflow: hidden;
-  /* 16:9 aspect ratio */
-  padding-top: 1000%;
-  position: relative;
+.carbon-footer {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.8;
 }
 
-.iframe-container iframe {
-   border: 0;
-   height: 100%;
-   left: 0;
-   position: absolute;
-   top: 0;
-   width: 100%;
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
 }
 
-.unstyled-button {
-  border: none;
-  padding: 0;
-  background: none;
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    height: 90vh;
+    background: var(--bg-color);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px var(--shadow-color);
+    overflow: hidden;
+}
+
+.modal-content iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 0.5rem;
+    font-size: 2rem;
+    color: var(--text-color);
+    cursor: pointer;
+    z-index: 1001;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .name {
+        font-size: 2rem;
+    }
+    
+    .social-links {
+        gap: 1rem;
+    }
+    
+    .payment-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skill-item {
+        padding: 0.5rem;
+    }
+    
+    .connect-options {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .connect-button {
+        justify-content: center;
+    }
+    
+    .modal-content {
+        width: 95%;
+        height: 95vh;
+    }
 }

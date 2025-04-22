@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DD Website Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background: var(--bg-color, #f4f4f4);
+            color: var(--text-color, #222);
+        }
+        .editor-container {
+            max-width: 900px;
+            margin: 2rem auto;
+            background: var(--card-bg, #fff);
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+            padding: 2rem;
+        }
+        .editor-toolbar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        .editor-toolbar input[type="file"] {
+            display: none;
+        }
+        .editor-toolbar label {
+            background: var(--primary-color, #2ecc71);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .editor-toolbar button {
+            background: var(--primary-color, #2ecc71);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #editable-area {
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            min-height: 400px;
+            padding: 1rem;
+            background: #fff;
+            outline: none;
+        }
+        .highlight {
+            background: #ffffcc;
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <div class="editor-toolbar">
+            <div>
+                <label for="fileInput">Load index.html</label>
+                <input type="file" id="fileInput" accept=".html">
+            </div>
+            <button id="downloadBtn">Download Updated index.html</button>
+        </div>
+        <div id="editable-area" contenteditable="true" spellcheck="true"></div>
+    </div>
+    <script>
+    // Load index.html into the editor
+    document.getElementById('fileInput').addEventListener('change', function(evt) {
+        const file = evt.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(e.target.result, 'text/html');
+            // Extract body content for editing
+            const bodyHTML = doc.body.innerHTML;
+            document.getElementById('editable-area').innerHTML = bodyHTML;
+        };
+        reader.readAsText(file);
+    });
+
+    // Download edited HTML
+    document.getElementById('downloadBtn').addEventListener('click', function() {
+        // Get edited content
+        const editedBody = document.getElementById('editable-area').innerHTML;
+        // Wrap in original HTML structure
+        const originalHead = `<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta property=\"og:title\" content=\"Dhrstadyumn Khera | Portfolio\" />\n    <meta property=\"og:description\" content=\"Climate Justice Advocate & Tech Enthusiast\" />\n    <meta property=\"og:image\" content=\"./assets/images/FiverrLinkTreeGig.png\" />\n    <meta name=\"theme-color\" content=\"#2ecc71\">\n    <title>Dhrstadyumn Khera</title>\n    <link rel=\"stylesheet\" href=\"style.css\">\n    <link rel=\"icon\" href=\"./assets/images/profile.png\" type=\"image/x-icon\"/>\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap\" rel=\"stylesheet\">\n</head>`;
+        const newHTML = `<!DOCTYPE html>\n<html lang=\"en\">\n${originalHead}\n<body>\n${editedBody}\n</body>\n</html>`;
+        const blob = new Blob([newHTML], {type: 'text/html'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'index.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    });
+    </script>
+</body>
+</html>
